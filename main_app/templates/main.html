@@ -1,0 +1,27 @@
+{% block title %}
+<center>
+<a href="{% url 'main_app:main' %}">Главная</a>
+<a href="{% url 'main_app:profile' %}">Профиль</a>
+    <a href="{% url 'messages:my_messages' %}">Мои сообщения</a>
+{% if user.is_authenticated %}
+<a href="{% url 'main_app:logout' %}">Выход</a>
+{% endif %}
+</center>
+{% endblock %}
+
+
+
+
+{% block content %}
+<center>
+{% for user in users %}
+
+    <p><img src="{{user.avatar.url}}" width="200" height="200"></p>
+
+    <p><a href="{% url 'main_app:profile_detail' user.pk %}">{{user.first_name}} {{user.last_name}}</a></p>
+    <hr>
+
+
+{% endfor %}
+</center>
+{% endblock %}

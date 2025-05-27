@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block content %}
+<center>
+<h1>Мои сообщения</h1>
+
+    {% for message in my_messages %}
+            {% if message %}
+            <p>{{message.author_to}}</p>
+            <p>{{message.message}}</p>
+            <p>{{message.created_at}}</p>
+            <p>{{message.is_read}}</p>
+            {% else %}
+            <p><h1>У вас нет сообщений!</h1></p>
+            {% endif %}
+
+    {% endfor %}
+   <p></p><a href="{% url 'main_app:main' %}">Главная страница</a></p>
+   <p><a href="{% url 'main_app:profile' %}"> Мой профиль</a></p>
+
+    </center>
+    {% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Отправить сообщение</button>
+  {% if form.errors %}
+  <p class="error">Пожалуйста, укажите правильный адрес электронной почты.</p>
+  {% endif %}
+</form>
+
+
+{% endblock %}

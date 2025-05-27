@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<center>
+    {% if user.is_authenticated %}
+        {% if user.avatar %}
+    <p><img src="{{ user.avatar.url }}" width="200" height="200"></p>
+        {% else %}
+        <p><img src="{{ default_photo }}" width="200" height="200"></p>
+        {% endif %}
+    <p>Имя:{{ user.first_name }}</p>
+    <p>Фамилия:{{ user.last_name }}</p>
+    <p>Дата рождения:{{ user.birth_day }}</p>
+    <p>Пол:{{ user.gender }}</p>
+    <p>О себе:{{ user.bio }}</p>
+    <p>Город:{{ user.location }}</p>
+    {% else %}
+    <a href="{% url 'main_app:login' %}">Войти</a>
+    <a href="{% url 'main_app:register' %}">Зарегистрироваться</a>
+    {% endif %}
+
+
+
+<a href="{% url 'main_app:update' %}">Изменить данные</a>
+</center>
+{% endblock %}

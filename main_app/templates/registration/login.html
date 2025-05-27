@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+
+
+{% block content %}
+<form method="post" action="{% url 'main_app:login' %}">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ next }}">
+  <div class="form-error">{{ form.non_field_errors }}</div>
+  {% for f in form %}
+  <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}:</label> {{ f }}</p>
+  <div class="form-error">{{ f.errors }}</div>
+  {% endfor %}
+
+  <button type="submit">Войти</button>
+  <a href="{% url 'main_app:registration' %}">Регистрация</a>
+  <a href="{% url 'main_app:password_reset' %}">Забыли пароль?</a>
+  {% endblock %}
